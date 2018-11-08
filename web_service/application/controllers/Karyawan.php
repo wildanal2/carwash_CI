@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 require APPPATH . '/libraries/REST_Controller.php'; 
 use Restserver\Libraries\REST_Controller; 
  
-class Kendaraan extends REST_Controller { 
+class Karyawan extends REST_Controller { 
  
     function __construct($config = 'rest') {         
     	parent::__construct($config);
@@ -13,20 +13,21 @@ class Kendaraan extends REST_Controller {
  
     //Menampilkan data Kendaraan     
     function index_get() {         
-        $kendaraan = $this->db->get('kendaraan')->result();
-        $this->response(array("result"=>$kendaraan, 200));   
+        $karyawan = $this->db->get('karyawan')->result();
+        $this->response(array("result"=>$karyawan, 200));   
     } 
 
     //Mengirim atau menambah data Kendarraan baru  
     function index_post() {         
     	$data = array(
-            'id'       => $this->post('id'), 
-            'nama'          => $this->post('nama'),                     
-            'harga'    => $this->post('harga'),
-            'img'          => $this->post('img')
+            'id'     => $this->post('id'), 
+            'nama'   => $this->post('nama'),                     
+            'nohp'   => $this->post('nohp'),
+            'alamat' => $this->post('alamat'),
+            'password' => $this->post('password')
         ); 
 
-        $insert = $this->db->insert('kendaraan', $data);         
+        $insert = $this->db->insert('karyawan', $data);         
         if ($insert) {             
             $this->response($data, 200);         
         } else {             
@@ -38,14 +39,15 @@ class Kendaraan extends REST_Controller {
     function index_put() {         
     	$id = $this->put('id');         
     	$data = array(                     
-    		'id'       => $this->put('id'),                     
-    		'nama'          => $this->put('nama'),                     
-    		'harga'    => $this->put('harga'),
-            'img'          => $this->put('img')
+    		'id'   => $this->put('id'),                     
+    		'nama' => $this->put('nama'),                     
+    		'nohp' => $this->put('nohp'),
+            'alamat'=> $this->put('alamat'),
+            'password' => $this->put('password')
     	);         
    
     	$this->db->where('id', $id);         
-    	$update = $this->db->update('kendaraan', $data);         
+    	$update = $this->db->update('karyawan', $data);         
     	if ($update) {             
     		$this->response($data, 200);         
     	} else {             
@@ -58,7 +60,7 @@ class Kendaraan extends REST_Controller {
  		
  		$id = $this->delete('id');         
  		$this->db->where('id', $id);         
- 		$delete = $this->db->delete('kendaraan');  
+ 		$delete = $this->db->delete('karyawan');  
 
  		if ($delete) {             
  			$this->response(array('status' => 'success'), 201);         
