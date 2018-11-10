@@ -4,31 +4,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 require APPPATH . '/libraries/REST_Controller.php'; 
 use Restserver\Libraries\REST_Controller; 
  
-class Karyawan extends REST_Controller { 
+class Kondisi extends REST_Controller { 
  
     function __construct($config = 'rest') {         
     	parent::__construct($config);
     	$this->load->database();
     } 
  
-    //Menampilkan data Kendaraan     
+    //Menampilkan data kondisi     
     function index_get() {         
-        $users = $this->db->get('users')->result();
-        $this->response(array("result"=>$users, 200));   
+        $kondisi = $this->db->get('kondisi')->result();
+        $this->response(array("result"=>$kondisi, 200));   
     } 
 
-    //Mengirim atau menambah data Kendarraan baru  
+    //Mengirim atau menambah data kondisi baru  
     function index_post() {         
     	$data = array(
-            'id'     => $this->post('id'), 
-            'nama'   => $this->post('nama'),                     
-            'nohp'   => $this->post('nohp'),
-            'alamat' => $this->post('alamat'),
-            'password' => $this->post('password'),
-            'level' => $this->post('level')
+            'id'       => $this->post('id'), 
+            'nama'          => $this->post('nama'),                     
+            'harga'    => $this->post('harga'),
+            'img'          => $this->post('img')
         ); 
 
-        $insert = $this->db->insert('users', $data);         
+        $insert = $this->db->insert('kondisi', $data);         
         if ($insert) {             
             $this->response($data, 200);         
         } else {             
@@ -36,20 +34,18 @@ class Karyawan extends REST_Controller {
         }    
     } 
 
-    //Memperbarui data kontak yang telah ada  
+    //Memperbarui data kondisi yang telah ada  
     function index_put() {         
     	$id = $this->put('id');         
     	$data = array(                     
-    		'id'   => $this->put('id'),                     
-    		'nama' => $this->put('nama'),                     
-    		'nohp' => $this->put('nohp'),
-            'alamat'=> $this->put('alamat'),
-            'password' => $this->put('password'),
-            'level' => $this->put('level')
+    		'id'       => $this->put('id'),                     
+    		'nama'          => $this->put('nama'),                     
+    		'harga'    => $this->put('harga'),
+            'img'          => $this->put('img')
     	);         
    
     	$this->db->where('id', $id);         
-    	$update = $this->db->update('users', $data);         
+    	$update = $this->db->update('kondisi', $data);         
     	if ($update) {             
     		$this->response($data, 200);         
     	} else {             
@@ -57,12 +53,12 @@ class Karyawan extends REST_Controller {
     	}     
     } 
  
- 	//Menghapus salah satu data kontak  
+ 	//Menghapus salah satu data kondisi  
  	function index_delete() {         
  		
  		$id = $this->delete('id');         
  		$this->db->where('id', $id);         
- 		$delete = $this->db->delete('users');  
+ 		$delete = $this->db->delete('kondisi');  
 
  		if ($delete) {             
  			$this->response(array('status' => 'success'), 201);         

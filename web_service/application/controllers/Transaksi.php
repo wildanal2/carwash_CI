@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 require APPPATH . '/libraries/REST_Controller.php'; 
 use Restserver\Libraries\REST_Controller; 
  
-class Karyawan extends REST_Controller { 
+class Transaksi extends REST_Controller { 
  
     function __construct($config = 'rest') {         
     	parent::__construct($config);
@@ -13,22 +13,24 @@ class Karyawan extends REST_Controller {
  
     //Menampilkan data Kendaraan     
     function index_get() {         
-        $users = $this->db->get('users')->result();
-        $this->response(array("result"=>$users, 200));   
+        $transaksi = $this->db->get('transaksi')->result();
+        $this->response(array("result"=>$transaksi, 200));   
     } 
 
     //Mengirim atau menambah data Kendarraan baru  
     function index_post() {         
     	$data = array(
             'id'     => $this->post('id'), 
-            'nama'   => $this->post('nama'),                     
-            'nohp'   => $this->post('nohp'),
-            'alamat' => $this->post('alamat'),
-            'password' => $this->post('password'),
-            'level' => $this->post('level')
+            'nopol'   => $this->post('nopol'),                     
+            'kendaraan'   => $this->post('kendaraan'),
+            'harga_kendaraan' => $this->post('harga_kendaraan'),
+            'kondisi' => $this->post('kondisi'),
+            'harga_kondisi'   => $this->post('harga_kondisi'),
+            'total' => $this->post('total'),
+            'kasir' => $this->post('kasir')
         ); 
 
-        $insert = $this->db->insert('users', $data);         
+        $insert = $this->db->insert('transaksi', $data);         
         if ($insert) {             
             $this->response($data, 200);         
         } else {             
@@ -44,12 +46,11 @@ class Karyawan extends REST_Controller {
     		'nama' => $this->put('nama'),                     
     		'nohp' => $this->put('nohp'),
             'alamat'=> $this->put('alamat'),
-            'password' => $this->put('password'),
-            'level' => $this->put('level')
+            'password' => $this->put('password')
     	);         
    
     	$this->db->where('id', $id);         
-    	$update = $this->db->update('users', $data);         
+    	$update = $this->db->update('transaksi', $data);         
     	if ($update) {             
     		$this->response($data, 200);         
     	} else {             
@@ -62,7 +63,7 @@ class Karyawan extends REST_Controller {
  		
  		$id = $this->delete('id');         
  		$this->db->where('id', $id);         
- 		$delete = $this->db->delete('users');  
+ 		$delete = $this->db->delete('transaksi');  
 
  		if ($delete) {             
  			$this->response(array('status' => 'success'), 201);         
