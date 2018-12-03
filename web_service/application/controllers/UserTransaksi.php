@@ -21,18 +21,30 @@ class UserTransaksi extends REST_Controller {
                 $query=$this->db->query("SELECT * FROM transaksi WHERE tanggal >= CURDATE() ORDER BY HOUR(tanggal) DESC, MINUTE(tanggal) DESC");
             }else if ($w=="week"){
 
+<<<<<<< HEAD
                 $query=$this->db->query("SELECT * FROM transaksi WHERE YEARWEEK(`tanggal`, 1) = YEARWEEK(CURDATE(), 1) order by tanggal DESC");
             }else if ($w=="month"){
                 $query=$this->db->query("SELECT * FROM transaksi WHERE MONTH(tanggal) = MONTH(CURRENT_DATE()) AND YEAR(tanggal) = YEAR(CURRENT_DATE()) order by tanggal DESC");
+=======
+                $query=$this->db->query("SELECT * FROM transaksi WHERE YEARWEEK(`tanggal`, 1) = YEARWEEK(CURDATE(), 1) order by tanggal ASC");
+            }else if ($w=="month"){
+                $query=$this->db->query("SELECT * FROM transaksi WHERE MONTH(tanggal) = MONTH(CURRENT_DATE()) AND YEAR(tanggal) = YEAR(CURRENT_DATE()) order by tanggal ASC");
+>>>>>>> 255fcc8ab9e812d1a6b09d93131bb553c5dd8a54
             }
         }else{
             if ($w=="today") {
                 $query=$this->db->query("SELECT * FROM transaksi WHERE tanggal >= CURDATE() AND kasir='$kasir' ORDER BY HOUR(tanggal) DESC, MINUTE(tanggal) DESC");
             }else if ($w=="week"){
 
+<<<<<<< HEAD
                 $query=$this->db->query("SELECT * FROM transaksi WHERE YEARWEEK(`tanggal`, 1) = YEARWEEK(CURDATE(), 1) AND kasir='$kasir' order by tanggal DESC");
             }else if ($w=="month"){
                 $query=$this->db->query("SELECT * FROM transaksi WHERE MONTH(tanggal) = MONTH(CURRENT_DATE()) AND YEAR(tanggal) = YEAR(CURRENT_DATE()) AND kasir='$kasir' order by tanggal DESC");
+=======
+                $query=$this->db->query("SELECT * FROM transaksi WHERE YEARWEEK(`tanggal`, 1) = YEARWEEK(CURDATE(), 1) AND kasir='$kasir' order by tanggal ASC");
+            }else if ($w=="month"){
+                $query=$this->db->query("SELECT * FROM transaksi WHERE MONTH(tanggal) = MONTH(CURRENT_DATE()) AND YEAR(tanggal) = YEAR(CURRENT_DATE()) AND kasir='$kasir' order by tanggal ASC");
+>>>>>>> 255fcc8ab9e812d1a6b09d93131bb553c5dd8a54
             }
         }
         $query=$query->result();
