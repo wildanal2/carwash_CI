@@ -15,7 +15,7 @@ class Event extends REST_Controller {
     function eventuser_get() {         
         $this->db->select('*');
         $this->db->from('event');
-        // $this->db->where('status', "Aktif");
+        $this->db->where('status', "Aktif");
         $query=$this->db->get()->result();
         $this->response(array("status"=>200, "result"=>$query));   
     } 
