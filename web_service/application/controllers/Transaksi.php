@@ -9,6 +9,7 @@ class Transaksi extends REST_Controller {
     function __construct($config = 'rest') {         
     	parent::__construct($config);
     	$this->load->database();
+        date_default_timezone_set("Asia/Jakarta");
     } 
  
     //Menampilkan data Kendaraan     
@@ -27,7 +28,8 @@ class Transaksi extends REST_Controller {
             'kondisi' => $this->post('kondisi'),
             'harga_kondisi'   => $this->post('harga_kondisi'),
             'total' => $this->post('total'),
-            'kasir' => $this->post('kasir')
+            'kasir' => $this->post('kasir'),
+            'tanggal' => date("Y-m-d H:i:s")
         ); 
 
         $insert = $this->db->insert('transaksi', $data);         
