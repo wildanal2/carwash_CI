@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 03, 2018 at 02:16 AM
--- Server version: 10.1.34-MariaDB
--- PHP Version: 5.6.37
+-- Generation Time: Dec 11, 2018 at 02:02 AM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 5.6.38
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -44,8 +44,9 @@ CREATE TABLE `event` (
 --
 
 INSERT INTO `event` (`id`, `nama_event`, `img`, `detail`, `diskon`, `required`, `bulan`, `status`) VALUES
-(1, 'Gratis Cuci motor 1X', '', 'gratis cuci motor setelah 5X cuci, dengan motor yang sama. promo hanya berlaku dibulan November.', 100, 5, 11, 'Aktif'),
-(2, 'Gratis 1 Teh Kotak', '', 'Setelah cuci di bulan ini sebanyak 3X untuk mendapatkan Teh Kotak 340ml', 0, 3, 12, 'nonAktif');
+(1, 'Gratis Cuci motor 1X', 'http://3.bp.blogspot.com/-R0O1htN63Cg/VV0xk4EU3II/AAAAAAAADPs/SlhAi7P6gWA/s1600/2014-12-11%2B08.36.30.jpg', 'gratis cuci motor setelah 5X cuci, dengan motor yang sama. promo hanya berlaku dibulan November.', 100, 5, 12, 'Aktif'),
+(2, 'Gratis 1 Teh Kotak', 'https://i.imgur.com/pHHWYEd.jpg', 'Setelah cuci di bulan ini sebanyak 3X untuk mendapatkan Teh Kotak 340ml', 0, 3, 12, 'nonAktif'),
+(6, 'sdfsad', 'http://1.bp.blogspot.com/-Np4r7GIlxWA/U6UUaamK7CI/AAAAAAAABU4/e0LswrOqPFY/s1600/BANNER+LOOK+1718.jpg', 'asdas', 22, 2, 12, 'nonAktif');
 
 -- --------------------------------------------------------
 
@@ -108,7 +109,7 @@ CREATE TABLE `transaksi` (
   `harga_kondisi` int(11) NOT NULL,
   `total` int(11) NOT NULL,
   `kasir` int(11) NOT NULL,
-  `tanggal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `tanggal` datetime NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -116,48 +117,54 @@ CREATE TABLE `transaksi` (
 --
 
 INSERT INTO `transaksi` (`id`, `nopol`, `kendaraan`, `harga_kendaraan`, `kondisi`, `harga_kondisi`, `total`, `kasir`, `tanggal`) VALUES
-(1, 'S4312ZZ', 'Matic', 8000, 'normal', 0, 8000, 3, '2018-11-09 22:23:45'),
-(2, 'S123A', 'Moge', 13000, 'Normal', 2000, 15000, 3, '2018-11-10 01:38:58'),
-(3, 'a223x', 'Trail', 9000, 'Normal', 0, 9000, 1, '2018-11-10 01:31:01'),
-(4, 'W4458ZZ', 'Bebek', 7000, 'Normal', 0, 7000, 1, '2018-11-10 01:55:08'),
-(5, 'F2231ZZ', 'Matic', 7000, 'Parah', 5000, 12000, 4, '2018-11-10 01:55:56'),
-(6, 'aa', 'Bebek', 7000, 'Normal', 0, 7000, 4, '2018-11-10 02:34:42'),
-(7, 'zz', 'Matic', 7000, 'Normal', 0, 7000, 4, '2018-11-10 02:34:55'),
-(8, 'aas', 'Matic', 7000, 'Normal', 0, 7000, 4, '2018-11-10 02:35:04'),
-(9, 'ee', 'Matic', 7000, 'Normal', 0, 7000, 4, '2018-11-10 02:35:12'),
-(10, 'ssd', 'Matic', 7000, 'Parah', 5000, 12000, 4, '2018-11-10 02:35:20'),
-(11, 'aas', 'Matic', 7000, 'Normal', 0, 7000, 4, '2018-11-10 02:35:29'),
-(12, 'zzx', 'Matic', 7000, 'Normal', 0, 7000, 4, '2018-11-10 02:35:38'),
-(13, 'dd', 'Trail', 9000, 'Parah', 5000, 14000, 4, '2018-11-10 02:35:45'),
-(14, 'gggh', 'Matic', 7000, 'Parah', 5000, 12000, 4, '2018-11-10 02:36:03'),
-(15, 'xx', 'Trail', 9000, 'Parah', 5000, 14000, 4, '2018-11-10 02:36:11'),
-(16, 'n7673p', 'Trail', 9000, 'Parah', 5000, 14000, 4, '2018-11-10 02:40:31'),
-(17, 'AG6675ZA', 'Matic Sport', 10000, 'Normal', 0, 10000, 1, '2018-11-10 03:24:03'),
-(18, 'S123A', 'Moge', 13000, 'Normal', 2000, 15000, 2, '2018-11-10 23:17:15'),
-(19, 'AG64125XU', 'Trail', 9000, 'Normal', 0, 9000, 1, '2018-11-10 23:28:55'),
-(20, 'AG6678AS', 'Matic', 7000, 'Normal', 0, 7000, 1, '2018-11-11 00:19:30'),
-(21, 'S1223Z', 'Matic', 7000, 'Normal', 0, 7000, 1, '2018-11-11 01:38:28'),
-(22, 'm9878hh', 'Trail', 9000, 'Normal', 0, 9000, 4, '2018-11-11 02:48:59'),
-(23, 'AG8807CC', 'Bebek', 7000, 'Normal', 0, 7000, 1, '2018-11-11 07:40:25'),
-(24, 'sasa', 'Moge', 18000, 'Parah', 5000, 23000, 1, '2018-11-11 08:11:44'),
-(25, 'AG 5955 XC', 'Moge', 18000, 'Parah', 5000, 23000, 1, '2018-11-11 14:31:25'),
-(26, 'M 9985 KT', 'Bebek', 7000, 'Parah', 5000, 12000, 4, '2018-11-11 14:42:45'),
-(27, 'S 1241 ZZ', 'Matic', 7000, 'Normal', 0, 7000, 1, '2018-11-11 23:29:12'),
-(28, 'DR 1145 A', 'Trail', 9000, 'Normal', 0, 9000, 1, '2018-11-12 01:25:51'),
-(29, 'N 2121 AA', 'Moge', 18000, 'Parah', 5000, 23000, 1, '2018-11-12 02:08:27'),
-(30, 'S 4444 Z', 'Trail', 9000, 'Parah', 5000, 14000, 1, '2018-11-11 02:09:32'),
-(31, 'N1321BJ', 'Moge', 18000, 'Normal', 0, 18000, 1, '2018-11-12 12:13:19'),
-(32, 'A 6453 ZU', 'Matic', 7000, 'Normal', 0, 7000, 1, '2018-11-13 01:48:24'),
-(33, 'N 2046 GQ', 'Moge', 18000, 'Parah', 5000, 23000, 1, '2018-11-13 02:09:46'),
-(34, 'n 2518 aaj', 'Bebek', 7000, 'Parah', 5000, 12000, 1, '2018-11-14 07:47:47'),
-(35, 'S 4444 Z', 'Trail', 9000, 'Parah', 5000, 14000, 1, '2018-11-01 12:51:51'),
-(36, 'N 111 GA', 'Trail', 9000, 'Parah', 5000, 14000, 1, '2018-11-23 01:35:28'),
-(37, 'AG 9999 WE', 'Matic', 7000, 'Parah', 5000, 12000, 1, '2018-11-23 01:35:33'),
-(38, 'A 9971 Z', 'Matic', 7000, '', 0, 7000, 1, '2018-11-29 16:02:25'),
-(39, 'b7544hg', 'Trail', 9000, 'Normal', 0, 9000, 1, '2018-11-30 08:09:44'),
-(40, 'S 4444 Z', 'Matic', 7000, 'Parah', 5000, 12000, 1, '2018-12-01 10:49:47'),
-(41, 'S 4444 Z', 'Trail', 9000, 'Normal', 0, 9000, 1, '2018-12-01 13:55:43'),
-(42, 's 4444 z', 'Matic', 7000, 'Normal', 0, 7000, 1, '2018-12-02 03:45:36');
+(1, 'S4312ZZ', 'Matic', 8000, 'normal', 0, 8000, 3, '2018-11-10 05:23:45'),
+(2, 'S123A', 'Moge', 13000, 'Normal', 2000, 15000, 3, '2018-11-10 08:38:58'),
+(3, 'a223x', 'Trail', 9000, 'Normal', 0, 9000, 1, '2018-11-10 08:31:01'),
+(4, 'W4458ZZ', 'Bebek', 7000, 'Normal', 0, 7000, 1, '2018-11-10 08:55:08'),
+(5, 'F2231ZZ', 'Matic', 7000, 'Parah', 5000, 12000, 4, '2018-11-10 08:55:56'),
+(6, 'aa', 'Bebek', 7000, 'Normal', 0, 7000, 4, '2018-11-10 09:34:42'),
+(7, 'zz', 'Matic', 7000, 'Normal', 0, 7000, 4, '2018-11-10 09:34:55'),
+(8, 'aas', 'Matic', 7000, 'Normal', 0, 7000, 4, '2018-11-10 09:35:04'),
+(9, 'ee', 'Matic', 7000, 'Normal', 0, 7000, 4, '2018-11-10 09:35:12'),
+(10, 'ssd', 'Matic', 7000, 'Parah', 5000, 12000, 4, '2018-11-10 09:35:20'),
+(11, 'aas', 'Matic', 7000, 'Normal', 0, 7000, 4, '2018-11-10 09:35:29'),
+(12, 'zzx', 'Matic', 7000, 'Normal', 0, 7000, 4, '2018-11-10 09:35:38'),
+(13, 'dd', 'Trail', 9000, 'Parah', 5000, 14000, 4, '2018-11-10 09:35:45'),
+(14, 'gggh', 'Matic', 7000, 'Parah', 5000, 12000, 4, '2018-11-10 09:36:03'),
+(15, 'xx', 'Trail', 9000, 'Parah', 5000, 14000, 4, '2018-11-10 09:36:11'),
+(16, 'n7673p', 'Trail', 9000, 'Parah', 5000, 14000, 4, '2018-11-10 09:40:31'),
+(17, 'AG6675ZA', 'Matic Sport', 10000, 'Normal', 0, 10000, 1, '2018-11-10 10:24:03'),
+(18, 'S123A', 'Moge', 13000, 'Normal', 2000, 15000, 2, '2018-11-11 06:17:15'),
+(19, 'AG64125XU', 'Trail', 9000, 'Normal', 0, 9000, 1, '2018-11-11 06:28:55'),
+(20, 'AG6678AS', 'Matic', 7000, 'Normal', 0, 7000, 1, '2018-11-11 07:19:30'),
+(21, 'S1223Z', 'Matic', 7000, 'Normal', 0, 7000, 1, '2018-11-11 08:38:28'),
+(22, 'm9878hh', 'Trail', 9000, 'Normal', 0, 9000, 4, '2018-11-11 09:48:59'),
+(23, 'AG8807CC', 'Bebek', 7000, 'Normal', 0, 7000, 1, '2018-11-11 14:40:25'),
+(24, 'sasa', 'Moge', 18000, 'Parah', 5000, 23000, 1, '2018-11-11 15:11:44'),
+(25, 'AG 5955 XC', 'Moge', 18000, 'Parah', 5000, 23000, 1, '2018-11-11 21:31:25'),
+(26, 'M 9985 KT', 'Bebek', 7000, 'Parah', 5000, 12000, 4, '2018-11-11 21:42:45'),
+(27, 'S 1241 ZZ', 'Matic', 7000, 'Normal', 0, 7000, 1, '2018-11-12 06:29:12'),
+(28, 'DR 1145 A', 'Trail', 9000, 'Normal', 0, 9000, 1, '2018-11-12 08:25:51'),
+(29, 'N 2121 AA', 'Moge', 18000, 'Parah', 5000, 23000, 1, '2018-11-12 09:08:27'),
+(30, 'S 4444 Z', 'Trail', 9000, 'Parah', 5000, 14000, 1, '2018-11-11 09:09:32'),
+(31, 'N1321BJ', 'Moge', 18000, 'Normal', 0, 18000, 1, '2018-11-12 19:13:19'),
+(32, 'A 6453 ZU', 'Matic', 7000, 'Normal', 0, 7000, 1, '2018-11-13 08:48:24'),
+(33, 'N 2046 GQ', 'Moge', 18000, 'Parah', 5000, 23000, 1, '2018-11-13 09:09:46'),
+(34, 'n 2518 aaj', 'Bebek', 7000, 'Parah', 5000, 12000, 1, '2018-11-14 14:47:47'),
+(35, 'S 4444 Z', 'Trail', 9000, 'Parah', 5000, 14000, 1, '2018-11-01 19:51:51'),
+(36, 'N 111 GA', 'Trail', 9000, 'Parah', 5000, 14000, 1, '2018-11-23 08:35:28'),
+(37, 'AG 9999 WE', 'Matic', 7000, 'Parah', 5000, 12000, 1, '2018-11-23 08:35:33'),
+(38, 'A 9971 Z', 'Matic', 7000, '', 0, 7000, 1, '2018-11-29 23:02:25'),
+(39, 'b7544hg', 'Trail', 9000, 'Normal', 0, 9000, 1, '2018-11-30 15:09:44'),
+(40, 'S 4444 Z', 'Matic', 7000, 'Parah', 5000, 12000, 1, '2018-12-01 17:49:47'),
+(41, 'S 4444 Z', 'Trail', 9000, 'Normal', 0, 9000, 1, '2018-12-01 20:55:43'),
+(42, 's 4444 z', 'Matic', 7000, 'Normal', 0, 7000, 1, '2018-12-02 10:45:36'),
+(43, 'S 1111 X', 'Matic', 7000, 'Normal', 0, 7000, 1, '2018-12-03 18:49:10'),
+(44, 'S 1111 X', 'Matic', 7000, 'Normal', 0, 7000, 1, '2018-12-03 18:49:21'),
+(45, 'S 1111 X', 'Matic', 7000, 'Normal', 0, 7000, 1, '2018-12-03 18:49:43'),
+(46, 'S 1111 X', 'Matic', 7000, 'Normal', 0, 7000, 1, '2018-12-03 18:49:55'),
+(47, 'S 1111 X', 'Matic', 7000, 'Normal', 0, 7000, 1, '2018-12-03 18:50:09'),
+(48, 'S 4453 XZ', 'Matic', 7000, 'Normal', 0, 7000, 1, '2018-12-10 07:20:43');
 
 -- --------------------------------------------------------
 
@@ -184,8 +191,7 @@ INSERT INTO `users` (`id`, `nama`, `nohp`, `alamat`, `password`, `level`) VALUES
 (3, 'firmansyah', '08844452', 'asdasdas', 'jhjkhasd', 1),
 (4, 'yahay', '11', 'ss', '11', 1),
 (5, 'Admin', '088', 'mlg', '088', 0),
-(6, 'saya', '0811', 'fgjfdf', '0811', 1),
-(8, 'saya', '0811', 'fgjfdf', '0811', 1);
+(6, 'saya', '0811', 'fgjfdf', '0811', 1);
 
 --
 -- Indexes for dumped tables
@@ -219,7 +225,8 @@ ALTER TABLE `transaksi`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `nohp` (`nohp`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -229,7 +236,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `kendaraan`
@@ -247,13 +254,13 @@ ALTER TABLE `kondisi`
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -13,6 +13,7 @@ class Karyawan extends REST_Controller {
  
     //Menampilkan data Kendaraan     
     function index_get() {         
+        $this->db->where('level',"1");
         $users = $this->db->get('users')->result();
         $this->response(array("result"=>$users, 200));   
     } 
